@@ -1,0 +1,19 @@
+first in local create ssh key using folowing command
+-> ss-keygen
+
+
+
+#!/bin/bash
+
+# Remove the existing SSH authorized keys for the default user (e.g., ec2-user)
+rm -f /home/ec2-user/.ssh/authorized_keys
+
+# Add the new SSH public key
+echo "YOUR_NEW_SSH_PUBLIC_KEY" >> /home/ec2-user/.ssh/authorized_keys
+
+# Ensure correct ownership and permissions
+chown ec2-user:ec2-user /home/ec2-user/.ssh/authorized_keys
+chmod 600 /home/ec2-user/.ssh/authorized_keys
+
+# Restart SSH for changes to take effect (optional)
+service sshd restart
